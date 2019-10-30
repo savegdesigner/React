@@ -1,0 +1,14 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Vinicius Savegnago",
+      "email": "savegdesigner@gmail.com"
+    },
+    {
+      "id": 2,
+      "name": "Beatriz Marsilli",
+      "email": "bialindinha@icloud.com"
+    }
+  ]
+}

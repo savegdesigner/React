@@ -1,0 +1,12 @@
+header.header{
+    padding: 0px 15px;
+    overflow: hidden;
+    white-space: nowrap;
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.184);
+    display: flex;
+    justify-content: center;
+}
+
+header.header h1{
+    font-size: 1.8em;
+}
