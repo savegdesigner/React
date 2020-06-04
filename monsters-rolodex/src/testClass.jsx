@@ -6,8 +6,17 @@ class TestClass extends Component {
         super()
 
         this.state = {
-            string: 'Vinicius'
+            monsters: []
         }
+    }
+
+    componentDidMount() {
+        let url = 'https://jsonplaceholder.typicode.com/users'
+
+        fetch(url)
+            .then(response => response.json())
+            .then(users => this.setState({monsters : users}))
+            .catch(error => console.log(error))
     }
 
     render(){
@@ -17,6 +26,10 @@ class TestClass extends Component {
                 <p>Hello my name is {this.state.string}</p>
 
                 <button onClick={() => this.setState({string: 'Suiciniv'})}>My name backwards</button>
+
+                <ul>
+                    {this.state.monsters.map(monster => <li key={monster.id}>{monster.name}</li>)}
+                </ul>
             </div>
     
         )
