@@ -1,22 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import { CardList } from './components/card-list/card-list.component'
 import './App.css';
-import TestClass from './testClass'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
+class App extends Component {
 
-        <TestClass/>
+  constructor(){
+    super()
 
-      </header>
-    </div>
-  );
+    this.state = {
+      monsters: []
+    }
+
+  }
+
+  componentDidMount() {
+    let url = 'https://jsonplaceholder.typicode.com/users'
+
+    fetch(url)
+      .then(response => response.json())
+      .then(users => this.setState({ monsters : users }))
+      .catch(error => console.log(error))
+  }
+
+  render(){
+    return(
+      <div className="App">
+
+      <CardList>
+        {this.state.monsters.map(monster => (
+                <h1 key={monster.id}>{monster.name}</h1>
+              ))}
+      </CardList>
+
+      </div>
+    )
+
+  }
+
 }
 
 export default App;

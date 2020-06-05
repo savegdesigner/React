@@ -6,7 +6,8 @@ class TestClass extends Component {
         super()
 
         this.state = {
-            monsters: []
+            monsters: [],
+            string: 'Vinicius'
         }
     }
 
