@@ -13,8 +13,12 @@ class App extends Component {
       searchField: ''
     }
 
+    // Arrow functions take over this
+    // this.handleChange = this.handleChange.bind(this)
+
   }
 
+  // LifeCycle method
   componentDidMount() {
     let url = 'https://jsonplaceholder.typicode.com/users'
 
@@ -22,6 +26,10 @@ class App extends Component {
       .then(response => response.json())
       .then(users => this.setState({ monsters : users }))
       .catch(error => console.log(error))
+  }
+
+  handleChange = (e) => {
+    this.setState({searchField : e.target.value})
   }
 
   render(){
@@ -36,7 +44,7 @@ class App extends Component {
 
         <SearchBox 
           placeholder="search monsters"
-          handleChange={e => this.setState({searchField : e.target.value})}
+          handleChange={this.handleChange}
         />
 
         <CardList monsters={filteredMonsters}/>
