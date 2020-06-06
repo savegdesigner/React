@@ -2,35 +2,37 @@ import React, { Component } from 'react'
 
 class TestClass extends Component {
 
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
 
         this.state = {
-            monsters: [],
-            string: 'Vinicius'
+            test: - 1 + this.props.increment
         }
+
+        this.props = props
     }
 
-    componentDidMount() {
-        let url = 'https://jsonplaceholder.typicode.com/users'
+    componentDidMount() {}
 
-        fetch(url)
-            .then(response => response.json())
-            .then(users => this.setState({monsters : users}))
-            .catch(error => console.log(error))
+    handleClick = () => {
+        // Async
+        this.setState({test : this.state.test + 1})
     }
+
+    handleClickBestPractice = () => {
+        this.setState((prevState, prevProps) => {
+            return {test: prevState.test + prevProps.increment}
+        },
+        () => console.log(this.state)
+    )}
 
     render(){
         return (
 
             <div>
-                <p>Hello my name is {this.state.string}</p>
+                <h1>{this.state.test}</h1> 
 
-                <button onClick={() => this.setState({string: 'Suiciniv'})}>My name backwards</button>
-
-                <ul>
-                    {this.state.monsters.map(monster => <li key={monster.id}>{monster.name}</li>)}
-                </ul>
+                <button onClick={this.handleClick}>Update State</button>
             </div>
     
         )

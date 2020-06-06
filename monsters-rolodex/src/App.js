@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { CardList } from './components/card-list/card-list.component'
 import './App.css';
 import { SearchBox } from './components/search-box/search-box.component'
+import TestClass from './testClass';
+import LifeCycle from './testOtherClass'
 
 class App extends Component {
 
@@ -10,7 +12,9 @@ class App extends Component {
 
     this.state = {
       monsters: [],
-      searchField: ''
+      searchField: '',
+      text: '',
+      showChild: true
     }
 
     // Arrow functions take over this
@@ -48,6 +52,14 @@ class App extends Component {
         />
 
         <CardList monsters={filteredMonsters}/>
+
+        {/* <TestClass increment={1}/> */}
+
+        {/* <button onClick={() => { this.setState({showChild: !this.state.showChild}) }}>Toggle Lifecycles</button>
+
+        <button onClick={() => this.setState({text: this.state.text + '_text'})}>Add Text</button>
+
+        {this.state.showChild ? <LifeCycle text={this.state.text}/> : null} */}
 
       </div>
     )
