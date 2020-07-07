@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap');
+
+.calculator {
+    display: grid;
+    grid-template-columns: repeat(4, 25%);
+    grid-template-rows: 1fr 48px 48px 48px 48px 48px;
+    width: 235px;
+    height: 320px;
+    border-radius: 5px;
+    overflow: hidden;
+    font-family: 'Nunito', monospace, sans-serif;
+    color: white;
+    box-shadow: 4px 12px 30px rgb(142, 156, 189)
+}

@@ -1,0 +1,37 @@
+$bg-button: #f0f0f0;
+$border-button: solid 1px #a5a4a4;
+
+.button {
+    font-size: 1.4em;
+    border: none;
+    background-color: $bg-button;
+    border-right: $border-button;
+    border-bottom: $border-button;
+    outline: none;
+    transition: 100ms ease;
+
+    &:hover {
+        background-color: #dee6ec;
+    }
+
+    &:active {
+        background-color: #b5cddf;
+    }
+}
+
+.button.double {
+    grid-column: span 2;
+}
+
+.button.triple {
+    grid-column: span 3;
+}
+
+.button.operation {
+    background-color: #fa8231;
+    color: white;
+
+    &:active {
+        background-color: #ad622f;
+    }
+}
