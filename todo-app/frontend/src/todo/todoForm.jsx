@@ -1,24 +1,28 @@
 import React from 'react'
 import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
+import IconButton from '../template/iconButton'
 
 export default props => (
 
-    <div>
+    <>
             <Form inline className="container-fluid">
-                <Form.Label htmlFor="inlineFormInputName2" srOnly>
+                <Form.Label htmlFor="input" srOnly>
                     Tarefa
                 </Form.Label>
+                
                 <Form.Control
+                    onChange={props.handleChange}
+                    value={props.description}
                     className="mb-2 mr-sm-2"
-                    id="inlineFormInputName2"
+                    id="input"
                     placeholder="Tarefa"
                 />
 
-                <Button type="submit" className="mb-2">
-                    Adicionar
-                </Button>
+                <IconButton              
+                    name="Adicionar"
+                    onClick={props.handleAdd}
+                />
             </Form>
-    </div>
+    </>
 
 )

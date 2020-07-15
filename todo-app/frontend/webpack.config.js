@@ -5,11 +5,12 @@ module.exports = {
     mode: "development",
     output: {
         path: path.resolve(__dirname, 'public'),
-        filename: 'bundle.js'
+        filename: 'bundle.js',
+        publicPath:'/'
     },
     devServer: {
-        port: 8080,
-        contentBase: path.resolve(__dirname, 'public') 
+        contentBase: path.resolve(__dirname, 'public'),
+        historyApiFallback: true // Cannot GET request on html file
     },
     module: {
         rules: [

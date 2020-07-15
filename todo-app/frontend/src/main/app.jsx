@@ -1,6 +1,6 @@
 import './app.scss'
 import React from 'react'
-import {BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import {BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 
 import Menu from '../template/menu'
 import Todo from '../todo/todo'
@@ -16,8 +16,9 @@ export default props =>  (
 
                 <Switch>
 
-                    <Route exact path='/todo' component={Todo}/>
-                    <Route exact path='/about' component={About}/>
+                    <Route path='/todo' component={Todo}/>
+                    <Route path='/about' component={About}/>
+                    <Redirect from="*" to="/todo"/>
 
                 </Switch>
 

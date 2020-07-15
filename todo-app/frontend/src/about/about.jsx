@@ -3,7 +3,7 @@ import Header from '../template/header'
 
 export default props => (
     
-    <div className="container-fluid">
+    <div className="container">
         <Header name="About" small="Nós"/>
     </div>
 

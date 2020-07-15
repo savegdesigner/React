@@ -4,13 +4,32 @@ import TodoForm from './todoForm'
 import TodoList from './todoList'
 
 export default class Todo extends Component {
+
+    state = {
+        description: '',
+        list: []
+    }
+
+    handleAdd = () => {
+        console.log(this.state.description)
+    }
+
+    handleChange = (event) => {
+        this.setState({ ...this.state, description: event.target.value })
+    }
+
     render() {
 
         return (
-            <div className="container-fluid">
+            <div className="container">
                 <Header name="Tarefas" small="cadastro"/>
 
-                <TodoForm />
+                <TodoForm 
+                    description={this.state.description} 
+                    handleAdd={this.handleAdd}
+                    handleChange={this.handleChange}
+                />
+
                 <TodoList />
             </div>
         )
