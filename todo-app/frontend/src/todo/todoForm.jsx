@@ -2,9 +2,9 @@ import React from 'react'
 import Form from 'react-bootstrap/Form'
 import IconButton from '../template/iconButton'
 
-export default props => (
+export default props => {
 
-    <>
+    return (
             <Form inline className="container-fluid">
                 <Form.Label htmlFor="input" srOnly>
                     Tarefa
@@ -18,11 +18,12 @@ export default props => (
                     placeholder="Tarefa"
                 />
 
-                <IconButton              
+                <IconButton 
+                    style="btn-primary"             
                     name="Adicionar"
                     onClick={props.handleAdd}
                 />
             </Form>
-    </>
+    )
 
-)
+}
