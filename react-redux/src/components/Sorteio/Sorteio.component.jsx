@@ -4,9 +4,10 @@ import Card from "../Card/Card.component";
 
 import "./styles.css";
 
-export default (props) => {
-  const { min, max } = props;
+import { connect } from "react-redux";
 
+const Sorteio = (props) => {
+  const { min, max } = props;
   const aleatorio = parseInt(Math.random() * (max - min) + min);
 
   return (
@@ -20,3 +21,12 @@ export default (props) => {
     </Card>
   );
 };
+
+const mapStateToProps = (state) => {
+  return {
+    min: state.numeros.min,
+    max: state.numeros.max,
+  };
+};
+
+export default connect(mapStateToProps)(Sorteio);
