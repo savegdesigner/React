@@ -1,0 +1,31 @@
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.red {
+  background-color: rgb(255, 110, 110);
+}
+
+.blue {
+  background-color: rgb(108, 108, 238);
+}
+
+.dark {
+  background-color: #414141;
+}
+
+.pink {
+  background-color: #f784ed;
+}
+
+.title {
+  flex: 1;
+  padding: 10px;
+}
+
+.content {
+  flex: 1;
+  padding: 10px;
+}
