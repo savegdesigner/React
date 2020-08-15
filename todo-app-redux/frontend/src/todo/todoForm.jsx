@@ -4,7 +4,7 @@ import IconButton from "../template/iconButton"
 
 import { connect } from "react-redux"
 import { bindActionCreators } from "redux"
-import { changeDescription, search } from "./todo.action"
+import { changeDescription, search, add, clear } from "./todo.action"
 
 class TodoForm extends Component {
   constructor(props) {
@@ -18,14 +18,18 @@ class TodoForm extends Component {
   }
 
   keyHandler(e) {
+    const { add, search, description, clear } = this.props
+
     if (e.key === "Enter") {
-      e.shiftKey ? this.props.handleSearch() : this.props.handleAdd()
+      e.shiftKey ? search() : add(description)
     } else if (e.key === "Escape") {
-      this.props.handleClear()
+      clear()
     }
   }
 
   render() {
+    const { add, search, description, clear } = this.props
+
     return (
       <Form inline className="container-fluid">
         <Form.Label htmlFor="input" srOnly>
@@ -41,8 +45,9 @@ class TodoForm extends Component {
           placeholder="Tarefa"
         />
 
-        <IconButton style="btn-primary" name="Adicionar" onClick={this.props.handleAdd} />
-        <IconButton style="btn-secundary" name="Search" onClick={this.props.search} />
+        <IconButton style="btn-primary" name="Adicionar" onClick={() => add(description)} />
+        <IconButton style="btn-secundary" name="Search" onClick={search} />
+        <IconButton style="btn-warning" name="Clear" onClick={() => clear()} />
       </Form>
     )
   }
@@ -57,6 +62,8 @@ const mapDispatchToProps = (dispatch) =>
     {
       changeDescription,
       search,
+      add,
+      clear,
     },
     dispatch
   )
