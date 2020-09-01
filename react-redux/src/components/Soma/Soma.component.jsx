@@ -4,7 +4,9 @@ import Card from "../Card/Card.component";
 
 import "./styles.css";
 
-export default (props) => {
+import { connect } from "react-redux";
+
+const Soma = (props) => {
   const { min, max } = props;
 
   return (
@@ -18,3 +20,12 @@ export default (props) => {
     </Card>
   );
 };
+
+const mapStateToProps = (state) => {
+  return {
+    min: state.numeros.min,
+    max: state.numeros.max,
+  };
+};
+
+export default connect(mapStateToProps)(Soma);
