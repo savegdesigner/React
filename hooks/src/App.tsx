@@ -1,10 +1,14 @@
 import React, { FunctionComponent, useRef, useCallback, FormEvent } from "react"
 
 import InputRef from "./components/InputRef"
+import Modal from "./components/Modal"
+
+import { ModalHandles } from "./components/Modal"
 
 const App: FunctionComponent = () => {
   const nameInputRef = useRef<HTMLInputElement>(null)
   const acceptTermsRef = useRef({ value: false })
+  const modalRef = useRef<ModalHandles>(null)
 
   const handleSubmit = useCallback((event: FormEvent) => {
     event.preventDefault()
@@ -18,6 +22,10 @@ const App: FunctionComponent = () => {
     acceptTermsRef.current.value = !acceptTermsRef.current.value
   }, [])
 
+  const handleOpenModal = useCallback(() => {
+    modalRef.current?.openModal()
+  }, [])
+
   return (
     <div className="App">
       <form onSubmit={handleSubmit}>
@@ -27,6 +35,10 @@ const App: FunctionComponent = () => {
 
         <button type="submit">Enviar</button>
       </form>
+
+      <button onClick={handleOpenModal}>Abrir modal</button>
+
+      <Modal ref={modalRef} />
     </div>
   )
 }
