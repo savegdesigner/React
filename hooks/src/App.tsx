@@ -1,46 +1,51 @@
-import React, { FunctionComponent, useRef, useCallback, FormEvent } from "react"
+import React, { FunctionComponent, useContext, useState } from "react";
 
-import InputRef from "./components/InputRef"
-import Modal from "./components/Modal"
-
-import { ModalHandles } from "./components/Modal"
+import { MyContext, defaultTheme } from "./context/context";
 
 const App: FunctionComponent = () => {
-  const nameInputRef = useRef<HTMLInputElement>(null)
-  const acceptTermsRef = useRef({ value: false })
-  const modalRef = useRef<ModalHandles>(null)
+  const [currentTheme, setCurrentTheme] = useState(defaultTheme.light);
 
-  const handleSubmit = useCallback((event: FormEvent) => {
-    event.preventDefault()
-
-    nameInputRef.current?.focus()
-    console.log(nameInputRef.current?.value)
-    console.log(acceptTermsRef.current.value)
-  }, [])
-
-  const handleAcceptTerms = useCallback(() => {
-    acceptTermsRef.current.value = !acceptTermsRef.current.value
-  }, [])
-
-  const handleOpenModal = useCallback(() => {
-    modalRef.current?.openModal()
-  }, [])
+  const toggleTheme = () => {
+    currentTheme === defaultTheme.light
+      ? setCurrentTheme(defaultTheme.dark)
+      : setCurrentTheme(defaultTheme.light);
+  };
 
   return (
-    <div className="App">
-      <form onSubmit={handleSubmit}>
-        <InputRef name="name" label="Nome completo" ref={nameInputRef} />
+    <MyContext.Provider value={currentTheme}>
+      <Wrapper>
+        <button
+          style={{
+            backgroundColor: currentTheme.background,
+            color: currentTheme.color,
+          }}
+          onClick={toggleTheme}
+        >
+          Change Theme
+        </button>
+      </Wrapper>
+    </MyContext.Provider>
+  );
+};
 
-        <button onClick={handleAcceptTerms}>Aceitar termos</button>
+export default App;
 
-        <button type="submit">Enviar</button>
-      </form>
+const Wrapper: FunctionComponent = ({ children }) => {
+  const theme = useContext(MyContext);
 
-      <button onClick={handleOpenModal}>Abrir modal</button>
-
-      <Modal ref={modalRef} />
+  return (
+    <div
+      style={{
+        width: "100%",
+        height: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: theme.background,
+        color: theme.color,
+      }}
+    >
+      {children}
     </div>
-  )
-}
-
-export default App
+  );
+};
