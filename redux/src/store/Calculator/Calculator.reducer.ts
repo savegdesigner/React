@@ -6,6 +6,9 @@ const INITIAL_STATE: CalculatorState = {
   total: 0,
 };
 
+/**
+ * Returns a new State based on the given Action Type
+ */
 const calculatorReducer = (
   state: CalculatorState = INITIAL_STATE,
   action: Action

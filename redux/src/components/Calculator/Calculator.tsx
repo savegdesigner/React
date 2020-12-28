@@ -1,20 +1,20 @@
-import React, { FunctionComponent, useState } from "react";
+import { FunctionComponent, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { CalculatorState } from "../../store/Types/CalculatorState";
 
 import { SUM, SUBTRACT } from "../../store/Calculator/calculator.types";
+import { subtract, sum } from "../../store/Calculator/Calculator.actions";
 
 import "./calculator.scss";
-import { subtract, sum } from "../../store/Calculator/Calculator.actions";
+import { RootState } from "../../store/store";
 
 const Calculator: FunctionComponent = () => {
   const [a, setA] = useState<string>("0");
   const [b, setB] = useState<string>("0");
 
-  const calculatorState = useSelector<
-    CalculatorState,
-    CalculatorState["total"]
-  >((state) => state.total);
+  const calculatorState = useSelector<RootState, CalculatorState["total"]>(
+    (state) => state.calculator.total
+  );
   const dispatch = useDispatch();
 
   const calculate = (type: string) => {

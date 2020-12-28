@@ -1,3 +1,3 @@
-export type CalculatorState = {
+export interface CalculatorState {
   total: number;
-};
+}
